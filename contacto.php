@@ -1,3 +1,7 @@
+<?php
+require_once 'seguridad/seguridad.php';
+$sesion= new Seguridad();
+ ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,6 +9,23 @@
     <title>Contacto</title>
   </head>
   <body>
+    <nav>
+      <?php
+        if (isset($_SESSION['usuario']) && $_SESSION['usuario']==1) {
+          echo "<a href='index.php'>Inicio</a>";
+          echo "<a href='logout.php'>         Cerrar sesion</a>";
+        }elseif (isset($_SESSION['usuario']) && $_SESSION['usuario']!=1) {
+          echo "<a href='index.php'>Inicio</a>";
+          echo "<a href='contacto.php'>           Contacto</a>";
+          echo "<a href='logout.php'>           Cerrar sesion</a>";
+        }else {
+          echo "<a href='index.php'>Inicio</a>";
+          echo "<a href='login.php'>          Login.</a>";
+          echo "<a href='contacto.php'>           Contacto</a>";
+          echo "<a href='registro.php'>         Registrarse</a>";
+        }
+      ?>
+    </nav>
     <form class="" action="contacto.php" method="post">
       <br>
       <legend><b>Contacta con nosotros</b></legend>
